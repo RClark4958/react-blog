@@ -1,4 +1,8 @@
 {
-    "presets": ["env", "react"],
-    "plugins": ["transform-object-rest-spread"]
-}
+    "presets": ["@babel/preset-react"],
+    "env": {
+      "development": {
+        "presets": [["@babel/preset-react", { "development": true }]]
+      }
+    }
+  }

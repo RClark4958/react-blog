@@ -63,7 +63,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin({ filename: 'style.css' }),
+    new ExtractTextPlugin({ filename: 'style.scss' }),
     new HtmlWebpackPlugin({
       template: './resources/index.html',
       filename: './index.html',
