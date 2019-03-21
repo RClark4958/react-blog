@@ -5,6 +5,14 @@ const Articles = mongoose.model('Articles');
 router.post('/', (req, res, next) => {
   const { body } = req;
 
+  if(!body.photo) {
+    return res.status(422).json({
+      errors: {
+        photo: 'is required',
+      },
+    });
+  }
+
   if(!body.title) {
     return res.status(422).json({
       errors: {
@@ -61,6 +69,10 @@ router.get('/:id', (req, res, next) => {
 
 router.patch('/:id', (req, res, next) => {
   const { body } = req;
+
+  if(typeof body.photo !== 'undefined') {
+    req.article.photo = body.photo;
+  }
 
   if(typeof body.title !== 'undefined') {
     req.article.title = body.title;

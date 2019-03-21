@@ -40,7 +40,7 @@ class Home extends React.Component {
       <div className="container">
         <div className="row pt-5">
           <div className="col-12 col-lg-6 offset-lg-3">
-            <h1 className="text-center">LightBlog</h1>
+            <h1 className="text-center">RickBlog</h1>
           </div>
           <Form />
         </div>
@@ -49,6 +49,11 @@ class Home extends React.Component {
             {articles.map((article) => {
               return (
                 <div className="card my-3">
+                  <div className="card-header">
+                    <p>
+                    <img src={article.photo}/>
+                    </p>
+                  </div>
                   <div className="card-header">
                     {article.title}
                   </div>
