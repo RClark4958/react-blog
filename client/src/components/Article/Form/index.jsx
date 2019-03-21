@@ -7,6 +7,7 @@ class Form extends React.Component {
     super(props);
 
     this.state = {
+      photo: '',
       title: '',
       body: '',
       author: '',
@@ -19,6 +20,7 @@ class Form extends React.Component {
   componentWillReceiveProps(nextProps) {
     if(nextProps.articleToEdit) {
       this.setState({
+        photo: nextProps.articleToEdit.photo,
         title: nextProps.articleToEdit.title,
         body: nextProps.articleToEdit.body,
         author: nextProps.articleToEdit.author,
@@ -28,24 +30,26 @@ class Form extends React.Component {
 
   handleSubmit(){
     const { onSubmit, articleToEdit, onEdit } = this.props;
-    const { title, body, author } = this.state;
+    const { photo, title, body, author } = this.state;
 
     if(!articleToEdit) {
       return axios.post('http://localhost:8000/api/articles', {
+        photo,
         title,
         body,
         author,
       })
         .then((res) => onSubmit(res.data))
-        .then(() => this.setState({ title: '', body: '', author: '' }));
+        .then(() => this.setState({ photo: '', title: '', body: '', author: '' }));
     } else {
       return axios.patch(`http://localhost:8000/api/articles/${articleToEdit._id}`, {
+        photo,
         title,
         body,
         author,
       })
         .then((res) => onEdit(res.data))
-        .then(() => this.setState({ title: '', body: '', author: '' }));
+        .then(() => this.setState({ photo: '', title: '', body: '', author: '' }));
     }
   }
 
@@ -57,10 +61,16 @@ class Form extends React.Component {
 
   render() {
     const { articleToEdit } = this.props;
-    const { title, body, author } = this.state;
+    const { photo, title, body, author } = this.state;
 
     return (
       <div className="col-12 col-lg-6 offset-lg-3">
+        <input
+          onChange={(ev) => this.handleChangeField('photo', ev)}
+          value={photo}
+          className="form-control my-3"
+          placeholder="Article Photo"
+        />
         <input
           onChange={(ev) => this.handleChangeField('title', ev)}
           value={title}
