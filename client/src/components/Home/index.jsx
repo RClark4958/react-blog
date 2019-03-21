@@ -51,7 +51,7 @@ class Home extends React.Component {
                 <div className="card my-3">
                   <div className="card-header">
                     <p>
-                    <img src={article.photo}/>
+                    <img src={article.photo} width="300px" height="auto"/>
                     </p>
                   </div>
                   <div className="card-header">

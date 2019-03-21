@@ -69,7 +69,7 @@ class Form extends React.Component {
           onChange={(ev) => this.handleChangeField('photo', ev)}
           value={photo}
           className="form-control my-3"
-          placeholder="Article Photo"
+          placeholder="Link to Image"
         />
         <input
           onChange={(ev) => this.handleChangeField('title', ev)}
